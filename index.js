@@ -56,7 +56,7 @@ async function run() {
       const user = req.body;
       // console.log(user);
       const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
-        expiresIn: "1h",
+        expiresIn: "1000h",
       });
       res
         .cookie("token", token, {
@@ -66,7 +66,6 @@ async function run() {
         })
         .send({ success: true });
     });
-
 
     // clear cookies after logOut user
     app.post("/logOut", async (req, res) => {
@@ -181,8 +180,6 @@ async function run() {
     });
     
     
-
-
     // POPULAR
     // popular get all
     app.get("/popularPosts", async (req, res) => {
@@ -196,7 +193,6 @@ async function run() {
       res.send(result);
     });
     
-
 
     // add comment
     // add comment post
@@ -230,12 +226,14 @@ async function run() {
 }
 run().catch(console.dir);
 
-
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
   });
+
+// DB_USER=ASSIGNMENTELEVENMAHFUZ
+// DB_PASS=ll17WXMiI0dQmMrw
+// ACCESS_TOKEN_SECRET=cb61016462c263d2b1f5ffe48825db29db36c53ffd52a340502fa9f8ff9a73faaf4e131989b5f943166426af5fe95ce2226e73785afd5c10251f023126e2b9bb
